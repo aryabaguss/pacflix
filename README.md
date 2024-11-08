@@ -1,79 +1,112 @@
-# Pacflix Subscription Management
+# Pacflix Membership System
 
-A simple program to manage subscription plans and benefits for a fictional streaming platform called Pacflix. This program allows existing and new users to view plan benefits, check current plans, upgrade plans, and select plans using referral codes.
+A Python-based application that manages user memberships and plan benefits for the Pacflix streaming service.
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Study Cases](#study-cases)
-- [License](#license)
+## Features
 
----
+- Display available Pacflix membership plans and their benefits
+- Check a user's current plan and plan details
+- Upgrade a user's membership plan with applicable discounts
+- Handle new user sign-ups with referral code validations
 
-## Installation
+## Membership Plans
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/pacflix-subscription.git
-Install required dependencies:
-bash
-Copy code
-pip install tabulate
-Usage
-Run the program using Python:
+Pacflix offers three membership plans:
 
-bash
-Copy code
-python main.py
-The program will execute a series of study cases to demonstrate its features.
+1. **Basic Plan**
+   - Services: Stream, Download, SD Quality
+   - Number of Devices: 1
+   - Content Variety: 3rd party Movie Only
+   - Price: Rp 120,000
 
-Features
-The program consists of two main classes:
+2. **Standard Plan**
+   - Services: Stream, Download, SD Quality, HD Quality
+   - Number of Devices: 2
+   - Content Variety: Basic Plan + Sports (F1, Football, Basketball)
+   - Price: Rp 160,000
 
-User:
-Attributes:
-username: Name of the user.
-current_plan: The user's current subscription plan.
-duration_plan: Duration of the subscription in months.
-Methods:
-check_benefit(): Displays available subscription plans and their benefits.
-check_plan(): Displays the user's current plan benefits.
-upgrade_plan(new_plan): Allows the user to upgrade their plan with a discount if the subscription is over 12 months.
-New_User:
-Attributes:
-username: Name of the new user.
-Methods:
-check_benefit(): Displays available subscription plans and their benefits.
-pick_plan(new_plan, referral_code): Allows a new user to select a plan and get a discount if a valid referral code is provided.
-Study Cases
-Study Case 1: User Checks All Plan Benefits
-In this case, an existing user (Shandy) checks the available plans and their benefits. This showcases the available features of each subscription tier.
+3. **Premium Plan**
+   - Services: Stream, Download, SD Quality, HD Quality, UHD Quality
+   - Number of Devices: 4
+   - Content Variety: Basic Plan + Standard Plan + Pacflix Original Series
+   - Price: Rp 200,000
 
-python
-Copy code
+## Study Cases
+
+### Case Study 1: User Checks All Plan Benefits
+
+```python
 user_1 = User('Shandy', 'basic plan', 12)
 user_1.check_benefit()
-Study Case 2: User Checks Current Plan Benefits
-Here, another user (Cahya) checks their current subscription plan's benefits and details.
+```
 
-python
-Copy code
+This case demonstrates how a user can view the details of all available Pacflix membership plans.
+
+### Case Study 2: User Checks Current Plan Benefits
+
+```python
 user_2 = User('Cahya', 'standard plan', 24)
 user_2.check_plan()
-Study Case 3: User Upgrades Their Plan
-An existing user (Cahya) decides to upgrade their current subscription from the Standard Plan to the Premium Plan. If the user has been subscribed for over 12 months, they receive a 5% discount.
+```
 
-python
-Copy code
+This case shows how a user can view the details of their current membership plan, including the plan name, duration, and the specific benefits included.
+
+### Case Study 3: User Upgrades Membership Plan
+
+```python
 user_3 = User('Cahya', 'Standard Plan', 24)
 user_3.upgrade_plan('Premium Plan')
-Study Case 4: New User Picks a Plan with Referral Code
-A new user (Faizal) signs up and chooses a plan using a referral code. The referral code provides a 4% discount if valid.
+```
 
-python
-Copy code
+This case illustrates how a user can upgrade their membership plan. The system calculates the discounted price based on the user's current plan and the duration of their subscription.
+
+### Case Study 4: New User Signs Up with Referral Code
+
+```python
 faizal = New_User('Faizal_icikiwir')
 faizal.pick_plan('basic Plan', 'bagus-9f92')
-License
-This project is licensed under the MIT License.
+```
+
+This case demonstrates how a new user can sign up for a Pacflix membership plan and receive a discount if they use a valid referral code.
+
+## How It Works
+
+The application is built using the `User` and `New_User` classes, which handle different aspects of the Pacflix membership system.
+
+### `User` Class
+
+The `User` class is responsible for managing existing user accounts. It has the following key features:
+
+1. **Accessing User Information**: Users can check their current plan, plan duration, and plan benefits.
+2. **Upgrading Plans**: Users can upgrade to a higher plan, with applicable discounts based on their current plan and subscription duration.
+3. **Error Handling**: The class raises appropriate exceptions for invalid usernames and plan names.
+
+### `New_User` Class
+
+The `New_User` class is used for handling sign-ups of new users. It has the following key features:
+
+1. **Viewing Plan Benefits**: New users can view the details of all available Pacflix membership plans.
+2. **Signing Up with Referral Code**: New users can sign up for a plan and receive a discount if they provide a valid referral code.
+3. **Error Handling**: The class raises exceptions for invalid plan names and referral codes.
+
+## Dependencies
+
+- `tabulate` library for displaying data in a formatted table
+
+## Error Handling
+
+The application includes error handling for the following cases:
+
+- **Invalid Username**: Raised when the provided username does not exist in the system.
+- **Invalid Plan**: Raised when the requested plan does not exist in the system.
+- **Invalid Referral Code**: Raised when the provided referral code is not found in the system.
+
+## Future Improvements
+
+- Implement a more dynamic and extensible plan structure to easily add or modify plan details
+- Introduce a database or file-based storage to persist user and plan data
+- Add more advanced features like multi-user support, payment processing, and subscription management
+
+## Contributing
+
+Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
